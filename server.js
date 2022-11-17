@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const assert = require('assert');
 const fileUpload = require('express-fileupload')
 
+const connectDB = require('./db')
+
 
 //port
 const PORT = process.env.PORT
@@ -33,6 +35,7 @@ app.use(`/api/v1/user`, userRoute)
 
 const start = async() =>{
     try{
+        await connectDB()
         app.listen(PORT, () =>{
             console.log(`server is listening @ http://localhost:${PORT}`);
         })
